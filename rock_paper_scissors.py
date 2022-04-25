@@ -1,5 +1,7 @@
 import sys
 import pygame
+import random
+
 from settings import Settings
 
 
@@ -17,14 +19,15 @@ class RockPaperScissors:
 		self.screen_width = self.screen.get_rect().width
 		self.screen_height = self.screen.get_rect().height
 		self.settings = Settings()
-		# create a list to store the list of messages
+		# create an empty list to store the all messages
 		self.list_of_messages = []
+		# Assign a font and font size
 		self.text_font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+		self.rock_paper_scissors_choices = ["rock", "paper", "scissors"]
+
 		
 		# Assign values to the x and y coordinates, where the messages will be shown
-		posX = (self.screen_width * 1/8)
-		posY = (self.screen_height * 1/8)
-		position = posX, posY
+
 
 	def run_game(self):
 		"""Start the main loop for the game."""
@@ -46,13 +49,23 @@ class RockPaperScissors:
 
 	def display_greeting_message(self):
 		"""Displays a text message on the screen"""
-		self.list_of_messages.append(self.settings.greeting_message)
+		self.list_of_messages.append(self.text_font.render(self.settings.greeting_message, True, self.settings.font_color))
+
+	def respond_to_user_input(self):
+		self.display_user_input()
+		self.display_computer_choice()
+
     	
-	def _display_user_input(self):
+	def display_user_input(self):
 		"""First the player enters r for rock, p for paper or s for scissors, the user input will be shown on the screen."""
 		self.user_input_message = f"You selected: {self.user_input}"
-		self.list_of_messages.append(self.user_input_message)
-		print(self.user_input)
+		self.list_of_messages.append(self.text_font.render(self.user_input_message, True, self.settings.font_color))
+
+	def display_computer_choice(self):
+		self.computer_choice = random.choice(self.rock_paper_scissors_choices)
+		self.list_of_messages.append(self.text_font.render(f"The computer picked: {self.computer_choice}", True, self.settings.font_color))
+		
+
 
 	def _check_keydown_events(self, event):
 		"""Respond to keypresses."""
@@ -60,13 +73,13 @@ class RockPaperScissors:
 			sys.exit()
 		elif event.key == pygame.K_r:
 			self.user_input = "rock"
-			self._display_user_input()
+			self.respond_to_user_input()
 		elif event.key == pygame.K_p:
 			self.user_input = "paper"
-			self._display_user_input()
+			self.respond_to_user_input()
 		elif event.key == pygame.K_s:
 			self.user_input = "scissors"
-			self._display_user_input()
+			self.respond_to_user_input()
 
 	def _check_keyup_events(self, event):
 		"""Respond to key releases."""
@@ -77,17 +90,26 @@ class RockPaperScissors:
 		elif event.key == pygame.K_s:
 			self.user_input = None
 
+	#def calculate_message_coordinates(self):
+		#for message in self.list_of_messages:
+
+
 	def _update_screen(self):
 		"""Update images on the screen, and flip to the new screen."""
 		# Redraw the screen during each pass through the loop.
 		self.screen.fill(self.settings.background_color)
         
-		self.text_surface = self.text_font.render(str(self.list_of_messages), True, (0, 0, 0))
-		#for message in self.list_of_messages:
-			#pygame.draw.rect(self.screen, (255, 255, 0), str(message))
-		#pygame.display.update()
+		#self.text_surface = self.text_font.render(str(self.list_of_messages), True, (0, 0, 0))
 
-		self.screen.blit(self.text_surface, (0,0))
+		messages_counter = 1
+		for message in self.list_of_messages:
+			message_x = self.screen_width * self.settings.pos_x_spacing
+			message_y = self.screen_height * self.settings.pos_y_spacing * messages_counter
+			messages_counter += 1
+			self.screen.blit(message,(message_x, message_y))
+
+
+		#self.screen.blit(self.text_surface, (0,0))
 		# Make the most recently drawn screen visible.
 		pygame.display.flip()
             

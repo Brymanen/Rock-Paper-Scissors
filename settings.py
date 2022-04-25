@@ -7,5 +7,7 @@ class Settings():
 		self.greeting_message += "Press the key r for rock, p for paper and s for scissors.\n"
 
 		#settings for the display of the messages
-		self.pos_x_spacing = 1/8
-		self.pos_y_spacing = 1/8
+		self.pos_x_spacing = 1/36
+		self.pos_y_spacing = 1/36
+		self.pos_y_spacing_top = 1/100
+		self.font_color = (0, 0, 0)
