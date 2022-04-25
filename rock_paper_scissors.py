@@ -4,8 +4,6 @@ import random
 
 from settings import Settings
 
-
-
 class RockPaperScissors:
 	"""Overall class to manage game assets and behavior."""
 	def __init__(self):
@@ -24,9 +22,6 @@ class RockPaperScissors:
 		# Assign a font and font size
 		self.text_font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 		self.rock_paper_scissors_choices = ["rock", "paper", "scissors"]
-
-		
-		# Assign values to the x and y coordinates, where the messages will be shown
 
 
 	def run_game(self):
@@ -54,6 +49,7 @@ class RockPaperScissors:
 	def respond_to_user_input(self):
 		self.display_user_input()
 		self.display_computer_choice()
+		self.determine_result()
 
     	
 	def display_user_input(self):
@@ -62,10 +58,25 @@ class RockPaperScissors:
 		self.list_of_messages.append(self.text_font.render(self.user_input_message, True, self.settings.font_color))
 
 	def display_computer_choice(self):
+		"""A random choice will be selected by the computer"""
 		self.computer_choice = random.choice(self.rock_paper_scissors_choices)
 		self.list_of_messages.append(self.text_font.render(f"The computer picked: {self.computer_choice}", True, self.settings.font_color))
-		
 
+	def determine_result(self):
+		# Determine the outcome of the game
+		# If result = 0 then the game ended in a draw, if result = 1, the player won the game and if result = 2 the computer won the game
+		# Determine wether the game ended in a draw
+		if self.user_input == self.computer_choice:
+			self.result = 0
+			self.list_of_messages.append(self.text_font.render(self.settings.message_draw, True, self.settings.font_color))
+		# Determine wether the player won
+		elif self.user_input == "rock" and self.computer_choice == "scissors" or self.user_input == "scissors" and self.computer_choice == "paper":
+			self.result = 1
+			self.list_of_messages.append(self.text_font.render(self.settings.message_player_won, True, self.settings.font_color))
+		# Else the computer won the game
+		else:
+			self.result = 2
+			self.list_of_messages.append(self.text_font.render(self.settings.message_computer_won, True, self.settings.font_color))
 
 	def _check_keydown_events(self, event):
 		"""Respond to keypresses."""

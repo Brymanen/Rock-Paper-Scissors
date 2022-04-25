@@ -2,9 +2,12 @@ class Settings():
 	def __init__(self):
 		self.background_color = (255, 255, 255)
 		
-		# Store the greeting message that will be shown at the start of the game
+		# Store the different message that will be displayed to the user
 		self.greeting_message = f"Let's play a game of rock paper scissors! "
 		self.greeting_message += "Press the key r for rock, p for paper and s for scissors.\n"
+		self.message_draw = "The game ended in a draw!"
+		self.message_player_won = "You won the game!"
+		self.message_computer_won = "You lost the game!"
 
 		#settings for the display of the messages
 		self.pos_x_spacing = 1/36
