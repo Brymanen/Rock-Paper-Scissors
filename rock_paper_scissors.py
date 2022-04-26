@@ -18,7 +18,7 @@ class RockPaperScissors:
 		self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 		self.screen_width = self.screen.get_rect().width
 		self.screen_height = self.screen.get_rect().height
-		# create an empty list to store the all played games, assign the 
+		# Create an empty list to store the all played games, assign the 
 		# number of played games to 0 and create a list to hold all messages
 		self.played_games = []
 		self.game_number = 0
@@ -109,7 +109,7 @@ class RockPaperScissors:
 	def determine_result(self):
 		"""Determines the outcome of the game"""
 		# If result = 0 then the game ended in a draw, if result = 1, 
-		# the player won the game and if result = 2 the computer won the game
+		# the player won the game and if result = 2 the computer won the game.
 		# First, determine whether the game ended in a draw
 		if self.user_input == self.computer_choice:
 			self.result = 0
@@ -142,6 +142,7 @@ class RockPaperScissors:
 		self.game_number += 1
 
 	def create_message_text(self, game):
+		"""Creates messages explaining, what happened in the game"""
 		# Create the string for the message for the message explaining 
 		# explaining the game number to the list of messages
 		self.messages.append(
@@ -152,7 +153,7 @@ class RockPaperScissors:
 		self.messages.append(
 			f'{self.settings.text_user_picked}'
 			f'{self.settings.rock_paper_scissors_mapping[game["user_input"]].title()}')
-		# Create the string for the message explaining the computer 
+		# Create the string for the message explaining the randomized computer 
 		# choice to the list of messages
 		self.messages.append(
 			f'{self.settings.text_computer_picked}'
