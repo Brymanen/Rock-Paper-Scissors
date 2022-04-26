@@ -172,7 +172,7 @@ class RockPaperScissors:
 			message_content, True, self.settings.font_color)
 		self.message_y += self.screen_width * self.settings.pos_y_spacing 
 		# Blit the messages to the screen, but only if the messages will be
-		# displayed above a cutoff starting from the bottom of the screen
+		# displayed above a cut off starting from the bottom of the screen
 		if self.message_y <= (
 			self.screen_height * self.settings.screen_bottom_cutoff):
 			# Blit the messages to the screen
