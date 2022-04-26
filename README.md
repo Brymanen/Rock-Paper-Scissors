@@ -1,6 +1,4 @@
 # Rock-Paper-Scissors
 Launch rock_paper_scissors.py via python interpreter and enjoy playing!
 
-Required modules:
-	pygame
-	Matplotlib
+Required modules: pygame, Matplotlib
