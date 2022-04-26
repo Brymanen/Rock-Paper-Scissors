@@ -18,10 +18,9 @@ class Settings():
 			2: "You lost the game!"
 		}
 
-		#settings for the display of the messages
+		# Settings for the display of the messages
 		self.pos_x_spacing = 1/25
 		self.pos_y_spacing = 1/75
-		self.pos_y_spacing_top = 1/200
 		self.font_color = (0, 0, 0)
 		self.pos_y_spacing_between_games = 1/150
 		self.screen_bottom_cutoff = 0.9
@@ -32,4 +31,14 @@ class Settings():
 			1: "paper",
 			2: "scissors"
 		}
+
+		# Storing the text for the messages regarding to the scoreboard
+		self.text_scoreboard_draw = "Draws: "
+		self.text_scoreboard_won_games = "Won games: " 
+		self.text_scoreboard_lost_games = "Lost games: "
+
+		# Parameters to adjust the x and y coordinates of the scoreboard
+		self.scoreboard_x = 1/2
+		self.scoreboard_y = 1/3
+		self.scoreboard_y_spacing = 1/25
 
